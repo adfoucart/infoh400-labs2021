@@ -166,10 +166,6 @@ public class AddPatientWindow extends javax.swing.JFrame {
         if( patient.getIdpatient() == null ){
             patientCtrl.create(patient);
         }
-        // Link back patient to person if necessary
-        if( patient.getIdperson().getIdpatient() == null ){
-            patient.getIdperson().setIdpatient(patient);
-        }
         
         // Save changes
         try {
