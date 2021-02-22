@@ -46,16 +46,6 @@ public class PersonJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
-            Doctor iddoctor = person.getIddoctor();
-            if (iddoctor != null) {
-                iddoctor = em.getReference(iddoctor.getClass(), iddoctor.getIddoctor());
-                person.setIddoctor(iddoctor);
-            }
-            Patient idpatient = person.getIdpatient();
-            if (idpatient != null) {
-                idpatient = em.getReference(idpatient.getClass(), idpatient.getIdpatient());
-                person.setIdpatient(idpatient);
-            }
             List<Doctor> attachedDoctorList = new ArrayList<Doctor>();
             for (Doctor doctorListDoctorToAttach : person.getDoctorList()) {
                 doctorListDoctorToAttach = em.getReference(doctorListDoctorToAttach.getClass(), doctorListDoctorToAttach.getIddoctor());
@@ -69,24 +59,6 @@ public class PersonJpaController implements Serializable {
             }
             person.setPatientList(attachedPatientList);
             em.persist(person);
-            if (iddoctor != null) {
-                Person oldIdpersonOfIddoctor = iddoctor.getIdperson();
-                if (oldIdpersonOfIddoctor != null) {
-                    oldIdpersonOfIddoctor.setIddoctor(null);
-                    oldIdpersonOfIddoctor = em.merge(oldIdpersonOfIddoctor);
-                }
-                iddoctor.setIdperson(person);
-                iddoctor = em.merge(iddoctor);
-            }
-            if (idpatient != null) {
-                Person oldIdpersonOfIdpatient = idpatient.getIdperson();
-                if (oldIdpersonOfIdpatient != null) {
-                    oldIdpersonOfIdpatient.setIdpatient(null);
-                    oldIdpersonOfIdpatient = em.merge(oldIdpersonOfIdpatient);
-                }
-                idpatient.setIdperson(person);
-                idpatient = em.merge(idpatient);
-            }
             for (Doctor doctorListDoctor : person.getDoctorList()) {
                 Person oldIdpersonOfDoctorListDoctor = doctorListDoctor.getIdperson();
                 doctorListDoctor.setIdperson(person);
@@ -119,27 +91,11 @@ public class PersonJpaController implements Serializable {
             em = getEntityManager();
             em.getTransaction().begin();
             Person persistentPerson = em.find(Person.class, person.getIdperson());
-            Doctor iddoctorOld = persistentPerson.getIddoctor();
-            Doctor iddoctorNew = person.getIddoctor();
-            Patient idpatientOld = persistentPerson.getIdpatient();
-            Patient idpatientNew = person.getIdpatient();
             List<Doctor> doctorListOld = persistentPerson.getDoctorList();
             List<Doctor> doctorListNew = person.getDoctorList();
             List<Patient> patientListOld = persistentPerson.getPatientList();
             List<Patient> patientListNew = person.getPatientList();
             List<String> illegalOrphanMessages = null;
-            if (iddoctorOld != null && !iddoctorOld.equals(iddoctorNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Doctor " + iddoctorOld + " since its idperson field is not nullable.");
-            }
-            if (idpatientOld != null && !idpatientOld.equals(idpatientNew)) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("You must retain Patient " + idpatientOld + " since its idperson field is not nullable.");
-            }
             for (Doctor doctorListOldDoctor : doctorListOld) {
                 if (!doctorListNew.contains(doctorListOldDoctor)) {
                     if (illegalOrphanMessages == null) {
@@ -159,14 +115,6 @@ public class PersonJpaController implements Serializable {
             if (illegalOrphanMessages != null) {
                 throw new IllegalOrphanException(illegalOrphanMessages);
             }
-            if (iddoctorNew != null) {
-                iddoctorNew = em.getReference(iddoctorNew.getClass(), iddoctorNew.getIddoctor());
-                person.setIddoctor(iddoctorNew);
-            }
-            if (idpatientNew != null) {
-                idpatientNew = em.getReference(idpatientNew.getClass(), idpatientNew.getIdpatient());
-                person.setIdpatient(idpatientNew);
-            }
             List<Doctor> attachedDoctorListNew = new ArrayList<Doctor>();
             for (Doctor doctorListNewDoctorToAttach : doctorListNew) {
                 doctorListNewDoctorToAttach = em.getReference(doctorListNewDoctorToAttach.getClass(), doctorListNewDoctorToAttach.getIddoctor());
@@ -182,24 +130,6 @@ public class PersonJpaController implements Serializable {
             patientListNew = attachedPatientListNew;
             person.setPatientList(patientListNew);
             person = em.merge(person);
-            if (iddoctorNew != null && !iddoctorNew.equals(iddoctorOld)) {
-                Person oldIdpersonOfIddoctor = iddoctorNew.getIdperson();
-                if (oldIdpersonOfIddoctor != null) {
-                    oldIdpersonOfIddoctor.setIddoctor(null);
-                    oldIdpersonOfIddoctor = em.merge(oldIdpersonOfIddoctor);
-                }
-                iddoctorNew.setIdperson(person);
-                iddoctorNew = em.merge(iddoctorNew);
-            }
-            if (idpatientNew != null && !idpatientNew.equals(idpatientOld)) {
-                Person oldIdpersonOfIdpatient = idpatientNew.getIdperson();
-                if (oldIdpersonOfIdpatient != null) {
-                    oldIdpersonOfIdpatient.setIdpatient(null);
-                    oldIdpersonOfIdpatient = em.merge(oldIdpersonOfIdpatient);
-                }
-                idpatientNew.setIdperson(person);
-                idpatientNew = em.merge(idpatientNew);
-            }
             for (Doctor doctorListNewDoctor : doctorListNew) {
                 if (!doctorListOld.contains(doctorListNewDoctor)) {
                     Person oldIdpersonOfDoctorListNewDoctor = doctorListNewDoctor.getIdperson();
@@ -252,20 +182,6 @@ public class PersonJpaController implements Serializable {
                 throw new NonexistentEntityException("The person with id " + id + " no longer exists.", enfe);
             }
             List<String> illegalOrphanMessages = null;
-            Doctor iddoctorOrphanCheck = person.getIddoctor();
-            if (iddoctorOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Person (" + person + ") cannot be destroyed since the Doctor " + iddoctorOrphanCheck + " in its iddoctor field has a non-nullable idperson field.");
-            }
-            Patient idpatientOrphanCheck = person.getIdpatient();
-            if (idpatientOrphanCheck != null) {
-                if (illegalOrphanMessages == null) {
-                    illegalOrphanMessages = new ArrayList<String>();
-                }
-                illegalOrphanMessages.add("This Person (" + person + ") cannot be destroyed since the Patient " + idpatientOrphanCheck + " in its idpatient field has a non-nullable idperson field.");
-            }
             List<Doctor> doctorListOrphanCheck = person.getDoctorList();
             for (Doctor doctorListOrphanCheckDoctor : doctorListOrphanCheck) {
                 if (illegalOrphanMessages == null) {

@@ -40,9 +40,6 @@ public class PatientJpaController implements Serializable {
         if (patient.getImageList() == null) {
             patient.setImageList(new ArrayList<Image>());
         }
-        if (patient.getPersonList() == null) {
-            patient.setPersonList(new ArrayList<Person>());
-        }
         if (patient.getAppointmentList() == null) {
             patient.setAppointmentList(new ArrayList<Appointment>());
         }
@@ -61,12 +58,6 @@ public class PatientJpaController implements Serializable {
                 attachedImageList.add(imageListImageToAttach);
             }
             patient.setImageList(attachedImageList);
-            List<Person> attachedPersonList = new ArrayList<Person>();
-            for (Person personListPersonToAttach : patient.getPersonList()) {
-                personListPersonToAttach = em.getReference(personListPersonToAttach.getClass(), personListPersonToAttach.getIdperson());
-                attachedPersonList.add(personListPersonToAttach);
-            }
-            patient.setPersonList(attachedPersonList);
             List<Appointment> attachedAppointmentList = new ArrayList<Appointment>();
             for (Appointment appointmentListAppointmentToAttach : patient.getAppointmentList()) {
                 appointmentListAppointmentToAttach = em.getReference(appointmentListAppointmentToAttach.getClass(), appointmentListAppointmentToAttach.getIdappointment());
@@ -85,15 +76,6 @@ public class PatientJpaController implements Serializable {
                 if (oldIdpatientOfImageListImage != null) {
                     oldIdpatientOfImageListImage.getImageList().remove(imageListImage);
                     oldIdpatientOfImageListImage = em.merge(oldIdpatientOfImageListImage);
-                }
-            }
-            for (Person personListPerson : patient.getPersonList()) {
-                Patient oldIdpatientOfPersonListPerson = personListPerson.getIdpatient();
-                personListPerson.setIdpatient(patient);
-                personListPerson = em.merge(personListPerson);
-                if (oldIdpatientOfPersonListPerson != null) {
-                    oldIdpatientOfPersonListPerson.getPersonList().remove(personListPerson);
-                    oldIdpatientOfPersonListPerson = em.merge(oldIdpatientOfPersonListPerson);
                 }
             }
             for (Appointment appointmentListAppointment : patient.getAppointmentList()) {
@@ -123,8 +105,6 @@ public class PatientJpaController implements Serializable {
             Person idpersonNew = patient.getIdperson();
             List<Image> imageListOld = persistentPatient.getImageList();
             List<Image> imageListNew = patient.getImageList();
-            List<Person> personListOld = persistentPatient.getPersonList();
-            List<Person> personListNew = patient.getPersonList();
             List<Appointment> appointmentListOld = persistentPatient.getAppointmentList();
             List<Appointment> appointmentListNew = patient.getAppointmentList();
             List<String> illegalOrphanMessages = null;
@@ -150,13 +130,6 @@ public class PatientJpaController implements Serializable {
             }
             imageListNew = attachedImageListNew;
             patient.setImageList(imageListNew);
-            List<Person> attachedPersonListNew = new ArrayList<Person>();
-            for (Person personListNewPersonToAttach : personListNew) {
-                personListNewPersonToAttach = em.getReference(personListNewPersonToAttach.getClass(), personListNewPersonToAttach.getIdperson());
-                attachedPersonListNew.add(personListNewPersonToAttach);
-            }
-            personListNew = attachedPersonListNew;
-            patient.setPersonList(personListNew);
             List<Appointment> attachedAppointmentListNew = new ArrayList<Appointment>();
             for (Appointment appointmentListNewAppointmentToAttach : appointmentListNew) {
                 appointmentListNewAppointmentToAttach = em.getReference(appointmentListNewAppointmentToAttach.getClass(), appointmentListNewAppointmentToAttach.getIdappointment());
@@ -187,23 +160,6 @@ public class PatientJpaController implements Serializable {
                     if (oldIdpatientOfImageListNewImage != null && !oldIdpatientOfImageListNewImage.equals(patient)) {
                         oldIdpatientOfImageListNewImage.getImageList().remove(imageListNewImage);
                         oldIdpatientOfImageListNewImage = em.merge(oldIdpatientOfImageListNewImage);
-                    }
-                }
-            }
-            for (Person personListOldPerson : personListOld) {
-                if (!personListNew.contains(personListOldPerson)) {
-                    personListOldPerson.setIdpatient(null);
-                    personListOldPerson = em.merge(personListOldPerson);
-                }
-            }
-            for (Person personListNewPerson : personListNew) {
-                if (!personListOld.contains(personListNewPerson)) {
-                    Patient oldIdpatientOfPersonListNewPerson = personListNewPerson.getIdpatient();
-                    personListNewPerson.setIdpatient(patient);
-                    personListNewPerson = em.merge(personListNewPerson);
-                    if (oldIdpatientOfPersonListNewPerson != null && !oldIdpatientOfPersonListNewPerson.equals(patient)) {
-                        oldIdpatientOfPersonListNewPerson.getPersonList().remove(personListNewPerson);
-                        oldIdpatientOfPersonListNewPerson = em.merge(oldIdpatientOfPersonListNewPerson);
                     }
                 }
             }
@@ -267,11 +223,6 @@ public class PatientJpaController implements Serializable {
             for (Image imageListImage : imageList) {
                 imageListImage.setIdpatient(null);
                 imageListImage = em.merge(imageListImage);
-            }
-            List<Person> personList = patient.getPersonList();
-            for (Person personListPerson : personList) {
-                personListPerson.setIdpatient(null);
-                personListPerson = em.merge(personListPerson);
             }
             em.remove(patient);
             em.getTransaction().commit();

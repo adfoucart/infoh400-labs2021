@@ -53,8 +53,6 @@ public class Patient implements Serializable {
     @JoinColumn(name = "idperson", referencedColumnName = "idperson")
     @ManyToOne(optional = false)
     private Person idperson;
-    @OneToMany(mappedBy = "idpatient")
-    private List<Person> personList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idpatient")
     private List<Appointment> appointmentList;
 
@@ -109,15 +107,6 @@ public class Patient implements Serializable {
 
     public void setIdperson(Person idperson) {
         this.idperson = idperson;
-    }
-
-    @XmlTransient
-    public List<Person> getPersonList() {
-        return personList;
-    }
-
-    public void setPersonList(List<Person> personList) {
-        this.personList = personList;
     }
 
     @XmlTransient

@@ -53,8 +53,6 @@ public class Doctor implements Serializable {
     private Person idperson;
     @OneToMany(mappedBy = "iddoctor")
     private List<Image> imageList;
-    @OneToMany(mappedBy = "iddoctor")
-    private List<Person> personList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "iddoctor")
     private List<Appointment> appointmentList;
 
@@ -109,15 +107,6 @@ public class Doctor implements Serializable {
 
     public void setImageList(List<Image> imageList) {
         this.imageList = imageList;
-    }
-
-    @XmlTransient
-    public List<Person> getPersonList() {
-        return personList;
-    }
-
-    public void setPersonList(List<Person> personList) {
-        this.personList = personList;
     }
 
     @XmlTransient

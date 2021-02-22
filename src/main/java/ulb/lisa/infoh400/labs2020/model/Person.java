@@ -16,8 +16,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -59,12 +57,6 @@ public class Person implements Serializable {
     private List<Doctor> doctorList;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idperson")
     private List<Patient> patientList;
-    @JoinColumn(name = "iddoctor", referencedColumnName = "iddoctor")
-    @ManyToOne
-    private Doctor iddoctor;
-    @JoinColumn(name = "idpatient", referencedColumnName = "idpatient")
-    @ManyToOne
-    private Patient idpatient;
 
     public Person() {
     }
@@ -121,22 +113,6 @@ public class Person implements Serializable {
 
     public void setPatientList(List<Patient> patientList) {
         this.patientList = patientList;
-    }
-
-    public Doctor getIddoctor() {
-        return iddoctor;
-    }
-
-    public void setIddoctor(Doctor iddoctor) {
-        this.iddoctor = iddoctor;
-    }
-
-    public Patient getIdpatient() {
-        return idpatient;
-    }
-
-    public void setIdpatient(Patient idpatient) {
-        this.idpatient = idpatient;
     }
 
     @Override
