@@ -178,16 +178,10 @@ DROP TABLE IF EXISTS `person`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `person` (
   `idperson` int(11) NOT NULL AUTO_INCREMENT,
-  `idpatient` int(11) DEFAULT NULL,
-  `iddoctor` int(11) DEFAULT NULL,
   `firstname` varchar(255) DEFAULT NULL,
   `familyname` varchar(255) DEFAULT NULL,
   `dateofbirth` date DEFAULT NULL,
-  PRIMARY KEY (`idperson`),
-  KEY `person_patient_fk` (`idpatient`),
-  KEY `person_doctor_fk` (`iddoctor`),
-  CONSTRAINT `person_doctor_fk` FOREIGN KEY (`iddoctor`) REFERENCES `doctor` (`iddoctor`) ON DELETE SET NULL ON UPDATE SET NULL,
-  CONSTRAINT `person_patient_fk` FOREIGN KEY (`idpatient`) REFERENCES `patient` (`idpatient`) ON DELETE SET NULL ON UPDATE SET NULL
+  PRIMARY KEY (`idperson`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -197,7 +191,7 @@ CREATE TABLE `person` (
 
 LOCK TABLES `person` WRITE;
 /*!40000 ALTER TABLE `person` DISABLE KEYS */;
-INSERT INTO `person` VALUES (1,NULL,NULL,'Adrien','Foucart','1988-04-11'),(2,NULL,1,'John','Doe','1970-12-01'),(5,NULL,NULL,'Mister','Test','1900-05-04'),(6,NULL,NULL,'tests','Test3','1988-01-01'),(7,NULL,NULL,'sfd','Test4','1999-09-10'),(8,NULL,NULL,'Jane2','Doe','1976-03-04');
+INSERT INTO `person` VALUES (1,'Adrien','Foucart','1988-04-11'),(2,'John','Doe','1970-12-01');
 /*!40000 ALTER TABLE `person` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
