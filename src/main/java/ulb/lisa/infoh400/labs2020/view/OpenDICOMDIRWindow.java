@@ -141,11 +141,11 @@ public class OpenDICOMDIRWindow extends javax.swing.JFrame {
             imageLabel.setText("<no image loaded>");
         }
     }//GEN-LAST:event_dicomdirTreeValueChanged
-
+    
     private void saveToDbButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveToDbButtonActionPerformed
         dcmCtrl.saveImageToDatabase();
     }//GEN-LAST:event_saveToDbButtonActionPerformed
-    
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextArea dcmAttributesTextArea;
     private javax.swing.JTree dicomdirTree;

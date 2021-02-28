@@ -13,7 +13,6 @@ import com.pixelmed.dicom.DicomDirectoryRecord;
 import com.pixelmed.dicom.DicomException;
 import com.pixelmed.dicom.DicomInputStream;
 import com.pixelmed.dicom.TagFromName;
-import com.pixelmed.display.SourceImage;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
@@ -71,15 +70,9 @@ public class DicomDirectoryController {
         if( recordAttributeList == null ) return null;
         if( recordAttributeList.get(TagFromName.DirectoryRecordType).getDelimitedStringValuesOrEmptyString().equals("IMAGE") ){
             String rel_path = recordAttributeList.get(TagFromName.ReferencedFileID).getDelimitedStringValuesOrEmptyString();
-            File dcmInstanceFile = new File(dcmdirfile.getParent(), rel_path);
+            DicomInstanceController dcmInstanceCtrl = new DicomInstanceController(new File(dcmdirfile.getParent(), rel_path));
 
-            try {
-                SourceImage sImg = new SourceImage(dcmInstanceFile.getAbsolutePath());
-                Image img = sImg.getBufferedImage();
-                return img;
-            } catch (IOException | DicomException ex) {
-                Logger.getLogger(OpenDICOMDIRWindow.class.getName()).log(Level.SEVERE, null, ex);
-            }                
+            return dcmInstanceCtrl.getImageData();
         }
         return null;
     }
@@ -88,30 +81,27 @@ public class DicomDirectoryController {
         if( recordAttributeList == null ) return false;
         if( recordAttributeList.get(TagFromName.DirectoryRecordType).getDelimitedStringValuesOrEmptyString().equals("IMAGE") ){
             String rel_path = recordAttributeList.get(TagFromName.ReferencedFileID).getDelimitedStringValuesOrEmptyString();
-            File dcmInstanceFile = new File(dcmdirfile.getParent(), rel_path);
-            
-            AttributeList al = new AttributeList();
-            try {
-                al.read(dcmInstanceFile);
-                String instanceUID = al.get(TagFromName.SOPInstanceUID).getDelimitedStringValuesOrEmptyString();
-                String studyUID = al.get(TagFromName.StudyInstanceUID).getDelimitedStringValuesOrEmptyString();
-                String seriesUID = al.get(TagFromName.SeriesInstanceUID).getDelimitedStringValuesOrEmptyString();
-                String patientID = al.get(TagFromName.PatientID).getDelimitedStringValuesOrEmptyString();
+            DicomInstanceController dcmInstanceCtrl = new DicomInstanceController(new File(dcmdirfile.getParent(), rel_path));
 
-                ulb.lisa.infoh400.labs2020.model.Image img = new ulb.lisa.infoh400.labs2020.model.Image();
-                img.setInstanceuid(instanceUID);
-                img.setStudyuid(studyUID);
-                img.setSeriesuid(seriesUID);
-                img.setPatientDicomIdentifier(patientID);
+            String instanceUID = dcmInstanceCtrl.getAttributeAsString(TagFromName.SOPInstanceUID);
+            String studyUID = dcmInstanceCtrl.getAttributeAsString(TagFromName.StudyInstanceUID);
+            String seriesUID = dcmInstanceCtrl.getAttributeAsString(TagFromName.SeriesInstanceUID);
+            String patientID = dcmInstanceCtrl.getAttributeAsString(TagFromName.PatientID);
 
-                EntityManagerFactory emfac = Persistence.createEntityManagerFactory("infoh400_PU");
-                ImageJpaController imgCtrl = new ImageJpaController(emfac);
-                imgCtrl.create(img);
+            String sopClassUID = dcmInstanceCtrl.getAttributeAsString(TagFromName.SOPClassUID);
+            dcmInstanceCtrl.storeDICOMImage("STORESCP", "localhost", 11112, sopClassUID, instanceUID);
+                
+            ulb.lisa.infoh400.labs2020.model.Image img = new ulb.lisa.infoh400.labs2020.model.Image();
+            img.setInstanceuid(instanceUID);
+            img.setStudyuid(studyUID);
+            img.setSeriesuid(seriesUID);
+            img.setPatientDicomIdentifier(patientID);
 
-                return true;
-            } catch (IOException | DicomException ex) {
-                Logger.getLogger(DicomDirectoryController.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            EntityManagerFactory emfac = Persistence.createEntityManagerFactory("infoh400_PU");
+            ImageJpaController imgCtrl = new ImageJpaController(emfac);
+            imgCtrl.create(img);
+
+            return true;
         }
         return false;
     }
