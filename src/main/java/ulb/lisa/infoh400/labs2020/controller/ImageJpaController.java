@@ -39,6 +39,11 @@ public class ImageJpaController implements Serializable {
         try {
             em = getEntityManager();
             em.getTransaction().begin();
+            
+            // Check if InstanceUID is unique
+            if( !em.createNamedQuery("Image.findByInstanceuid").setParameter("instanceuid", image.getInstanceuid()).getResultList().isEmpty() )
+                return;
+            
             Appointment idappointment = image.getIdappointment();
             if (idappointment != null) {
                 idappointment = em.getReference(idappointment.getClass(), idappointment.getIdappointment());
