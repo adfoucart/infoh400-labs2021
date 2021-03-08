@@ -5,8 +5,10 @@
  */
 package ulb.lisa.infoh400.labs2020.view;
 
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -171,6 +173,11 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        itemsList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                itemsListMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(itemsList);
 
         editPatientButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noun_edit_3029255.png"))); // NOI18N
@@ -504,6 +511,20 @@ public class MainWindow extends javax.swing.JFrame {
         
         disableButtons();
     }//GEN-LAST:event_listImagesButtonActionPerformed
+
+    private void itemsListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_itemsListMouseClicked
+        if (evt.getClickCount() == 2 && evt.getButton() == MouseEvent.BUTTON1 && itemsList.getSelectedIndex() >= 0) {
+            EntityListModel model = (EntityListModel) itemsList.getModel();
+            if(model.getList().get(itemsList.getSelectedIndex()) instanceof Image){
+                Image selected = (Image) model.getList().get(itemsList.getSelectedIndex());
+                String path = "D:\\Adrien\\pCloud\\ULB\\TPs\\INFOH400\\libs\\dcm4che-5.23.0\\bin";
+                File f = new File(path, selected.getInstanceuid());
+
+                DICOMViewWindow dcmViewPopup = new DICOMViewWindow(f);
+                dcmViewPopup.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_itemsListMouseClicked
        
     /**
      * @param args the command line arguments
