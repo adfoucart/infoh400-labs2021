@@ -78,7 +78,7 @@ public class DicomInstanceController {
     
     public void storeDICOMImage(String aetitle, String host, int port, String sopClassUID, String sopInstanceUID){
         try {
-            new StorageSOPClassSCU(host,port,aetitle,"INFOH400",dcmInstanceFile.getAbsolutePath(),sopClassUID,sopInstanceUID,0,0);
+            new StorageSOPClassSCU(host, port, aetitle, "INFOH400", dcmInstanceFile.getAbsolutePath(), null, null, 0);
         } catch (DicomNetworkException | DicomException | IOException ex) {
             Logger.getLogger(OpenDICOMDIRWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
