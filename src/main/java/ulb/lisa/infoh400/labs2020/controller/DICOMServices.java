@@ -43,23 +43,7 @@ public class DICOMServices {
                 System.err.println("Received: " + dicomFileName + " from " + callingAETitle + " in " + transferSyntax);
                 DicomInstanceController dcmInstanceCtrl = new DicomInstanceController(new File(dicomFileName));
                 
-                String instanceUID = dcmInstanceCtrl.getAttributeAsString(TagFromName.SOPInstanceUID);
-                String studyUID = dcmInstanceCtrl.getAttributeAsString(TagFromName.StudyInstanceUID);
-                String seriesUID = dcmInstanceCtrl.getAttributeAsString(TagFromName.SeriesInstanceUID);
-                String patientID = dcmInstanceCtrl.getAttributeAsString(TagFromName.PatientID);
-
-                String sopClassUID = dcmInstanceCtrl.getAttributeAsString(TagFromName.SOPClassUID);
-                dcmInstanceCtrl.storeDICOMImage("STORESCP", "localhost", 11112, sopClassUID, instanceUID);
-
-                ulb.lisa.infoh400.labs2020.model.Image img = new ulb.lisa.infoh400.labs2020.model.Image();
-                img.setInstanceuid(instanceUID);
-                img.setStudyuid(studyUID);
-                img.setSeriesuid(seriesUID);
-                img.setPatientDicomIdentifier(patientID);
-
-                EntityManagerFactory emfac = Persistence.createEntityManagerFactory("infoh400_PU");
-                ImageJpaController imgCtrl = new ImageJpaController(emfac);
-                imgCtrl.create(img);
+                dcmInstanceCtrl.saveInstanceToDatabase();
             }
         }
     }

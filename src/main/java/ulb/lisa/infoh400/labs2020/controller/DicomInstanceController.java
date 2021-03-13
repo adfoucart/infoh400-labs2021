@@ -9,6 +9,7 @@ import com.pixelmed.dicom.AttributeList;
 import com.pixelmed.dicom.AttributeTag;
 import com.pixelmed.dicom.DicomDictionary;
 import com.pixelmed.dicom.DicomException;
+import com.pixelmed.dicom.TagFromName;
 import com.pixelmed.display.SourceImage;
 import com.pixelmed.network.DicomNetworkException;
 import com.pixelmed.network.StorageSOPClassSCU;
@@ -17,6 +18,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import ulb.lisa.infoh400.labs2020.view.OpenDICOMDIRWindow;
 
 /**
@@ -82,5 +85,25 @@ public class DicomInstanceController {
         } catch (DicomNetworkException | DicomException | IOException ex) {
             Logger.getLogger(OpenDICOMDIRWindow.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public void saveInstanceToDatabase(){
+        String instanceUID = getAttributeAsString(TagFromName.SOPInstanceUID);
+        String studyUID = getAttributeAsString(TagFromName.StudyInstanceUID);
+        String seriesUID = getAttributeAsString(TagFromName.SeriesInstanceUID);
+        String patientID = getAttributeAsString(TagFromName.PatientID);
+
+        String sopClassUID = getAttributeAsString(TagFromName.SOPClassUID);
+        storeDICOMImage("STORESCP", "localhost", 11112, sopClassUID, instanceUID);
+
+        ulb.lisa.infoh400.labs2020.model.Image img = new ulb.lisa.infoh400.labs2020.model.Image();
+        img.setInstanceuid(instanceUID);
+        img.setStudyuid(studyUID);
+        img.setSeriesuid(seriesUID);
+        img.setPatientDicomIdentifier(patientID);
+
+        EntityManagerFactory emfac = Persistence.createEntityManagerFactory("infoh400_PU");
+        ImageJpaController imgCtrl = new ImageJpaController(emfac);
+        imgCtrl.create(img);
     }
 }
