@@ -14,6 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import ulb.lisa.infoh400.labs2020.controller.DICOMServices;
 import ulb.lisa.infoh400.labs2020.controller.DoctorJpaController;
 import ulb.lisa.infoh400.labs2020.controller.ImageJpaController;
 import ulb.lisa.infoh400.labs2020.controller.PatientJpaController;
@@ -79,6 +80,7 @@ public class MainWindow extends javax.swing.JFrame {
         deleteAppointmentButton = new javax.swing.JButton();
         deleteDoctorButton = new javax.swing.JButton();
         deleteImageButton = new javax.swing.JButton();
+        startDICOMServerButton = new javax.swing.JButton();
 
         doctorTextLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         doctorTextLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -224,6 +226,13 @@ public class MainWindow extends javax.swing.JFrame {
         deleteImageButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/noun_Delete_756859.png"))); // NOI18N
         deleteImageButton.setEnabled(false);
 
+        startDICOMServerButton.setText("Start DICOM Server");
+        startDICOMServerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startDICOMServerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -287,60 +296,67 @@ public class MainWindow extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(ImageImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(ImageTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(startDICOMServerButton)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(patientTextLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(patientImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(doctorTextLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(doctorImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(appointmentTextLabel)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(AppointmentImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(ImageTextLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(ImageImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(listPatientsButton)
-                                .addComponent(addPatientButton))
-                            .addComponent(listDoctorsButton)
-                            .addComponent(addDoctorButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(deletePatientButton)
-                            .addComponent(editPatientButton)
-                            .addComponent(editDoctorButton)
-                            .addComponent(deleteDoctorButton)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(listAppointmentsButton)
-                            .addComponent(addAppointmentButton)
-                            .addComponent(listImagesButton)
-                            .addComponent(addImageButton))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(editAppointmentButton)
-                            .addComponent(deleteAppointmentButton)
-                            .addComponent(editImageButton, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(deleteImageButton, javax.swing.GroupLayout.Alignment.LEADING))))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(patientTextLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(patientImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(doctorTextLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(doctorImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(appointmentTextLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(AppointmentImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(ImageTextLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(ImageImageLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(listPatientsButton)
+                                        .addComponent(addPatientButton))
+                                    .addComponent(listDoctorsButton)
+                                    .addComponent(addDoctorButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(deletePatientButton)
+                                    .addComponent(editPatientButton)
+                                    .addComponent(editDoctorButton)
+                                    .addComponent(deleteDoctorButton)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(listAppointmentsButton)
+                                    .addComponent(addAppointmentButton)
+                                    .addComponent(listImagesButton)
+                                    .addComponent(addImageButton))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(editAppointmentButton)
+                                    .addComponent(deleteAppointmentButton)
+                                    .addComponent(editImageButton, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(deleteImageButton, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(startDICOMServerButton)))
                 .addContainerGap())
         );
 
@@ -525,6 +541,13 @@ public class MainWindow extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_itemsListMouseClicked
+
+    private void startDICOMServerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startDICOMServerButtonActionPerformed
+        DICOMServices dcmServices = new DICOMServices();
+        dcmServices.startStoreSCP();
+        
+       startDICOMServerButton.setEnabled(false);
+    }//GEN-LAST:event_startDICOMServerButtonActionPerformed
        
     /**
      * @param args the command line arguments
@@ -590,6 +613,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JButton listPatientsButton;
     private javax.swing.JLabel patientImageLabel;
     private javax.swing.JLabel patientTextLabel;
+    private javax.swing.JButton startDICOMServerButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -128,6 +128,8 @@
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+              <Component id="startDICOMServerButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -135,68 +137,76 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="titleLabel" min="-2" pref="43" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="patientTextLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="patientImageLabel" min="-2" pref="121" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="doctorTextLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="doctorImageLabel" min="-2" pref="121" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="appointmentTextLabel" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="AppointmentImageLabel" min="-2" pref="121" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <Component id="ImageTextLabel" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="ImageImageLabel" min="-2" pref="121" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="listPatientsButton" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="addPatientButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="patientTextLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="patientImageLabel" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="doctorTextLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="doctorImageLabel" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" attributes="0">
+                                  <Component id="appointmentTextLabel" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="AppointmentImageLabel" min="-2" pref="121" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="listDoctorsButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="addDoctorButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="ImageTextLabel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="ImageImageLabel" min="-2" pref="121" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="deletePatientButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="editPatientButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="editDoctorButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteDoctorButton" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="3" attributes="0">
+                                      <Component id="listPatientsButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="addPatientButton" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="listDoctorsButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addDoctorButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="deletePatientButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editPatientButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editDoctorButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deleteDoctorButton" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="listAppointmentsButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addAppointmentButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="listImagesButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="addImageButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="editAppointmentButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deleteAppointmentButton" min="-2" max="-2" attributes="0"/>
+                                  <Component id="editImageButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deleteImageButton" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                       </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="226" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="listAppointmentsButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="addAppointmentButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="listImagesButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="addImageButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="editAppointmentButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteAppointmentButton" min="-2" max="-2" attributes="0"/>
-                          <Component id="editImageButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteImageButton" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="startDICOMServerButton" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="226" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -458,6 +468,14 @@
         </Property>
         <Property name="enabled" type="boolean" value="false"/>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="startDICOMServerButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Start DICOM Server"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="startDICOMServerButtonActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
