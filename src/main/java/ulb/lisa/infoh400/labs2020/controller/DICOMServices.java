@@ -5,21 +5,14 @@
  */
 package ulb.lisa.infoh400.labs2020.controller;
 
-import com.pixelmed.dicom.AttributeList;
 import com.pixelmed.dicom.DicomException;
-import com.pixelmed.dicom.DicomInputStream;
-import com.pixelmed.dicom.TagFromName;
 import com.pixelmed.network.DicomNetworkException;
 import com.pixelmed.network.ReceivedObjectHandler;
 import com.pixelmed.network.StorageSOPClassSCPDispatcher;
-import java.io.BufferedInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 
 /**
  *
