@@ -539,6 +539,10 @@ public class MainWindow extends javax.swing.JFrame {
                 DICOMViewWindow dcmViewPopup = new DICOMViewWindow(f);
                 dcmViewPopup.setVisible(true);
             }
+            else if(model.getList().get(itemsList.getSelectedIndex()) instanceof Patient){
+                HL7SendWindow hl7popup = new HL7SendWindow((Patient) model.getList().get(itemsList.getSelectedIndex()));
+                hl7popup.setVisible(true);
+            }
         }
     }//GEN-LAST:event_itemsListMouseClicked
 
