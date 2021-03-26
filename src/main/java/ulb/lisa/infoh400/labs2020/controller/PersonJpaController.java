@@ -254,4 +254,15 @@ public class PersonJpaController implements Serializable {
         }
     }
     
+    public Person findDuplicate(Person p){
+        EntityManager em = getEntityManager();
+        List<Person> results = em.createNamedQuery("Person.findDuplicate").setParameter("firstname", p.getFirstname()).setParameter("familyname", p.getFamilyname()).setParameter("dateofbirth", p.getDateofbirth()).getResultList();
+        
+        if( results.size() > 0 ){
+            return results.get(0);
+        }
+        else
+            return null;
+    }
+    
 }

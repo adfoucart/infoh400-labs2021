@@ -16,6 +16,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import ulb.lisa.infoh400.labs2020.controller.DICOMServices;
 import ulb.lisa.infoh400.labs2020.controller.DoctorJpaController;
+import ulb.lisa.infoh400.labs2020.controller.HL7Services;
 import ulb.lisa.infoh400.labs2020.controller.ImageJpaController;
 import ulb.lisa.infoh400.labs2020.controller.PatientJpaController;
 import ulb.lisa.infoh400.labs2020.controller.exceptions.IllegalOrphanException;
@@ -81,6 +82,7 @@ public class MainWindow extends javax.swing.JFrame {
         deleteDoctorButton = new javax.swing.JButton();
         deleteImageButton = new javax.swing.JButton();
         startDICOMServerButton = new javax.swing.JButton();
+        startHL7ServerButton = new javax.swing.JButton();
 
         doctorTextLabel1.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         doctorTextLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -233,6 +235,13 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        startHL7ServerButton.setText("Start HL7 Server");
+        startHL7ServerButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startHL7ServerButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -297,7 +306,9 @@ public class MainWindow extends javax.swing.JFrame {
                                     .addComponent(ImageImageLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(ImageTextLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(startDICOMServerButton)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(startDICOMServerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(startHL7ServerButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -356,6 +367,8 @@ public class MainWindow extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 226, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(startHL7ServerButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(startDICOMServerButton)))
                 .addContainerGap())
         );
@@ -552,6 +565,13 @@ public class MainWindow extends javax.swing.JFrame {
         
        startDICOMServerButton.setEnabled(false);
     }//GEN-LAST:event_startDICOMServerButtonActionPerformed
+
+    private void startHL7ServerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startHL7ServerButtonActionPerformed
+        HL7Services hl7Services = new HL7Services();
+        hl7Services.startServer();
+        
+        startHL7ServerButton.setEnabled(false);
+    }//GEN-LAST:event_startHL7ServerButtonActionPerformed
        
     /**
      * @param args the command line arguments
@@ -618,6 +638,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JLabel patientImageLabel;
     private javax.swing.JLabel patientTextLabel;
     private javax.swing.JButton startDICOMServerButton;
+    private javax.swing.JButton startHL7ServerButton;
     private javax.swing.JLabel titleLabel;
     // End of variables declaration//GEN-END:variables
 }
