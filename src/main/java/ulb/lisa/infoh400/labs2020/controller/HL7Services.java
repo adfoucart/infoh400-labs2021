@@ -25,6 +25,7 @@ import ca.uhn.hl7v2.protocol.ReceivingApplicationException;
 import java.io.IOException;
 import java.util.Date;
 import java.util.Map;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
@@ -39,9 +40,12 @@ import ulb.lisa.infoh400.labs2020.model.Person;
 public class HL7Services {
 
     private HL7Service server;
+    
+    Properties props = GlobalProperties.getProperties();
+    int localport = Integer.valueOf(props.getProperty("hl7.localserver.port"));
 
     public void startServer() {
-        int port = 54321;
+        int port = localport;
         HapiContext ctx = new DefaultHapiContext();
         server = ctx.newServer(port, false);
 

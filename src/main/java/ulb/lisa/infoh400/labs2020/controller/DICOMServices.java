@@ -11,6 +11,7 @@ import com.pixelmed.network.ReceivedObjectHandler;
 import com.pixelmed.network.StorageSOPClassSCPDispatcher;
 import java.io.File;
 import java.io.IOException;
+import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,9 +21,14 @@ import java.util.logging.Logger;
  */
 public class DICOMServices {
     
+    Properties props = GlobalProperties.getProperties();
+    int port = Integer.valueOf(props.getProperty("dicom.localscp.port"));
+    String aet = props.getProperty("dicom.localscp.aet");
+    String savedir = props.getProperty("dicom.localscp.savedir");
+    
     public void startStoreSCP() {
         try {
-            new Thread(new StorageSOPClassSCPDispatcher(104, "HISSTORE", new File("D:\\Adrien\\Documents\\NetBeansProjects\\infoh400-labs2021\\src\\main\\resources\\localpacs"), new OurReceivedObjectHandler())).start();
+            new Thread(new StorageSOPClassSCPDispatcher(port, aet, new File(savedir), new OurReceivedObjectHandler())).start();
         } catch (IOException ex) {
             Logger.getLogger(DICOMServices.class.getName()).log(Level.SEVERE, null, ex);
         }

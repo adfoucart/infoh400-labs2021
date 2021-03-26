@@ -6,13 +6,18 @@
 package ulb.lisa.infoh400.labs2020.view;
 
 import java.io.File;
+import java.util.Properties;
 import javax.swing.JFileChooser;
+import ulb.lisa.infoh400.labs2020.controller.GlobalProperties;
 
 /**
  *
  * @author 8Utilisateur
  */
 public class SelectFilePopup {
+    
+    static Properties props = GlobalProperties.getProperties();
+    static String defaultPath = props.getProperty("dicom.dicomdir.defaultpath");
     
     public static File getFile(String defaultPath){
         JFileChooser jfc = new JFileChooser(defaultPath);
@@ -29,8 +34,6 @@ public class SelectFilePopup {
         return null;
     }
     public static File getFile(){
-        String defaultPath = "D:/Adrien/pCloud/ULB/TPs/INFOH400/Data";
-        
         return getFile(defaultPath);
     }
     
