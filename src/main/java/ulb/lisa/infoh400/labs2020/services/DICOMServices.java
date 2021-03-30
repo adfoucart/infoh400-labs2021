@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ulb.lisa.infoh400.labs2020.controller;
+package ulb.lisa.infoh400.labs2020.services;
 
 import com.pixelmed.dicom.DicomException;
 import com.pixelmed.network.DicomNetworkException;
@@ -14,6 +14,8 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ulb.lisa.infoh400.labs2020.controller.DicomInstanceController;
+import ulb.lisa.infoh400.labs2020.controller.GlobalProperties;
 
 /**
  *

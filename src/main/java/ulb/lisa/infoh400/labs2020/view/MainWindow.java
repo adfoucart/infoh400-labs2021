@@ -15,10 +15,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import ulb.lisa.infoh400.labs2020.controller.DICOMServices;
 import ulb.lisa.infoh400.labs2020.controller.DoctorJpaController;
 import ulb.lisa.infoh400.labs2020.controller.GlobalProperties;
-import ulb.lisa.infoh400.labs2020.controller.HL7Services;
 import ulb.lisa.infoh400.labs2020.controller.ImageJpaController;
 import ulb.lisa.infoh400.labs2020.controller.PatientJpaController;
 import ulb.lisa.infoh400.labs2020.controller.exceptions.IllegalOrphanException;
@@ -26,6 +24,8 @@ import ulb.lisa.infoh400.labs2020.controller.exceptions.NonexistentEntityExcepti
 import ulb.lisa.infoh400.labs2020.model.Doctor;
 import ulb.lisa.infoh400.labs2020.model.Image;
 import ulb.lisa.infoh400.labs2020.model.Patient;
+import ulb.lisa.infoh400.labs2020.services.DICOMServices;
+import ulb.lisa.infoh400.labs2020.services.HL7Services;
 
 /**
  *

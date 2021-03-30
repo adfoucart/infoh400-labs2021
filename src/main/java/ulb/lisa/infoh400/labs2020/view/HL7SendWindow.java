@@ -5,8 +5,8 @@
  */
 package ulb.lisa.infoh400.labs2020.view;
 
-import ulb.lisa.infoh400.labs2020.controller.HL7Services;
 import ulb.lisa.infoh400.labs2020.model.Patient;
+import ulb.lisa.infoh400.labs2020.services.HL7Services;
 
 /**
  *

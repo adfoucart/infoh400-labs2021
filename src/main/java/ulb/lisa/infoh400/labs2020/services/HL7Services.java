@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ulb.lisa.infoh400.labs2020.controller;
+package ulb.lisa.infoh400.labs2020.services;
 
 import ca.uhn.hl7v2.DefaultHapiContext;
 import ca.uhn.hl7v2.HL7Exception;
@@ -30,6 +30,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import ulb.lisa.infoh400.labs2020.controller.GlobalProperties;
+import ulb.lisa.infoh400.labs2020.controller.PatientJpaController;
+import ulb.lisa.infoh400.labs2020.controller.PersonJpaController;
 import ulb.lisa.infoh400.labs2020.model.Patient;
 import ulb.lisa.infoh400.labs2020.model.Person;
 

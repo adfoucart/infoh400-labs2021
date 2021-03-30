@@ -130,10 +130,8 @@
               <EmptySpace max="32767" attributes="0"/>
               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                   <Component id="siteLabel" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="startDICOMServerButton" max="32767" attributes="0"/>
-                      <Component id="startHL7ServerButton" max="32767" attributes="0"/>
-                  </Group>
+                  <Component id="startDICOMServerButton" max="32767" attributes="0"/>
+                  <Component id="startHL7ServerButton" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
