@@ -34,9 +34,9 @@ public class DicomInstanceController {
     
     Properties props = GlobalProperties.getProperties();
     String callingaet = props.getProperty("dicom.storescu.aet");
-    String remoteaet = props.getProperty("dicom.storescp.aet");
-    String remotehost = props.getProperty("dicom.storescp.host");
-    int remoteport = Integer.valueOf(props.getProperty("dicom.storescp.port"));
+    String remoteaet = props.getProperty("dicom.remotescp.aet");
+    String remotehost = props.getProperty("dicom.remotescp.host");
+    int remoteport = Integer.valueOf(props.getProperty("dicom.remotescp.port"));
 
     public DicomInstanceController(File dcmInstanceFile) {
         this.dcmInstanceFile = dcmInstanceFile;
