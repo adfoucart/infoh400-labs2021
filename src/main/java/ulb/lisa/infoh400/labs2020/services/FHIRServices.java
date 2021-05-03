@@ -26,7 +26,7 @@ public class FHIRServices {
         ctx = FhirContext.forR4();
     }
     
-    private static ulb.lisa.infoh400.labs2020.model.Patient getPatient(Patient p){
+    public static ulb.lisa.infoh400.labs2020.model.Patient getPatient(Patient p){
         Person idperson = new Person();
         idperson.setFirstname(p.getNameFirstRep().getGivenAsSingleString());
         idperson.setFamilyname(p.getNameFirstRep().getFamily());
@@ -39,13 +39,15 @@ public class FHIRServices {
         return pat;
     }
     
-    private static Patient getPatient(ulb.lisa.infoh400.labs2020.model.Patient p){
+    public static Patient getPatient(ulb.lisa.infoh400.labs2020.model.Patient p){
         Patient pat = new Patient();
         pat.getNameFirstRep().setFamily(p.getIdperson().getFamilyname());
         List<StringType> givenNames = new ArrayList();
         givenNames.add(new StringType(p.getIdperson().getFirstname()));
         pat.getNameFirstRep().setGiven(givenNames);
         pat.setBirthDate(p.getIdperson().getDateofbirth());
+        if( p.getIdpatient() != null )
+            pat.setId(String.valueOf(p.getIdpatient()));
         
         return pat;
     }

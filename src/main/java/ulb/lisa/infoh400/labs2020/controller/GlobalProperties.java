@@ -48,6 +48,8 @@ public class GlobalProperties {
         props.setProperty("dicom.dicomdir.defaultpath", "D:/Adrien/pCloud/ULB/TPs/INFOH400/Data");
         
         props.setProperty("hl7.localserver.port", "54321");
+        
+        props.setProperty("fhir.defaultHost", "http://localhost:8080/infoh400-labs2021-web/fhir");
     }
             
     public static Properties getProperties(){

@@ -12,6 +12,8 @@ import javax.persistence.Persistence;
 import ulb.lisa.infoh400.labs2020.controller.PatientJpaController;
 import ulb.lisa.infoh400.labs2020.controller.PersonJpaController;
 import ulb.lisa.infoh400.labs2020.model.Patient;
+import ulb.lisa.infoh400.labs2020.controller.GlobalProperties;
+
 
 /**
  *
@@ -58,7 +60,7 @@ public class FHIRSearchWindow extends javax.swing.JFrame {
 
         jLabel2.setText("FHIR Host:");
 
-        fhirHostTextField.setText("http://hapi.fhir.org/baseR4");
+        fhirHostTextField.setText(GlobalProperties.getProperties().getProperty("fhir.defaultHost"));
 
         jLabel3.setText("Family Name:");
 

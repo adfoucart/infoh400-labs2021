@@ -113,7 +113,7 @@ public class HL7Services {
 
         return false;
     }
-
+    
     private static class ADTReceiverApplication implements ReceivingApplication<Message> {
 
         private final EntityManagerFactory emfac = Persistence.createEntityManagerFactory("infoh400_PU");

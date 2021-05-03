@@ -95,7 +95,9 @@
     </Component>
     <Component class="javax.swing.JTextField" name="fhirHostTextField">
       <Properties>
-        <Property name="text" type="java.lang.String" value="http://hapi.fhir.org/baseR4"/>
+        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+          <Connection code="GlobalProperties.getProperties().getProperty(&quot;fhir.defaultHost&quot;)" type="code"/>
+        </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

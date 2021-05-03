@@ -279,4 +279,17 @@ public class PatientJpaController implements Serializable {
         }
     }
     
+    public List<Patient> findPatientsByFamilyName(String familyName){
+        EntityManager em = getEntityManager();
+        List<Person> persons = em.createNamedQuery("Person.findByFamilyname").setParameter("familyname", familyName).getResultList();
+        List<Patient> patients = new ArrayList();
+        
+        for( Person p : persons ){
+            if( p.getPatientList().size() > 0 )
+                patients.add( p.getPatientList().get(0) );
+        } 
+        
+        return patients;
+    }
+    
 }

@@ -34,6 +34,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Patient.findAll", query = "SELECT p FROM Patient p"),
     @NamedQuery(name = "Patient.findByIdpatient", query = "SELECT p FROM Patient p WHERE p.idpatient = :idpatient"),
     @NamedQuery(name = "Patient.findByPhonenumber", query = "SELECT p FROM Patient p WHERE p.phonenumber = :phonenumber"),
+    //@NamedQuery(name = "Patient.findByFamilyname", query = "SELECT pat FROM Patient pat LEFT JOIN Person p ON pat.idperson = p.idperson WHERE p.familyname = :familyname"),
     @NamedQuery(name = "Patient.findByStatus", query = "SELECT p FROM Patient p WHERE p.status = :status")})
 public class Patient implements Serializable {
 
