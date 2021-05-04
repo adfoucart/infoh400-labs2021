@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import ulb.lisa.infoh400.labs2020.auth.Authentication;
 import ulb.lisa.infoh400.labs2020.controller.DoctorJpaController;
 import ulb.lisa.infoh400.labs2020.controller.GlobalProperties;
 import ulb.lisa.infoh400.labs2020.controller.ImageJpaController;
@@ -584,7 +585,15 @@ public class MainWindow extends javax.swing.JFrame {
         
         startHL7ServerButton.setEnabled(false);
     }//GEN-LAST:event_startHL7ServerButtonActionPerformed
-       
+    
+    public static void display(){
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new MainWindow().setVisible(true);
+            }
+        });
+    }
     /**
      * @param args the command line arguments
      */
@@ -611,13 +620,20 @@ public class MainWindow extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainWindow().setVisible(true);
+        
+        if( Authentication.hasUser() ){
+            Authentication.promptLogin();
+        }
+        else{
+            CreateUserWindow createUserPopup = new CreateUserWindow();
+            createUserPopup.setVisible(true);
+            createUserPopup.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent evt){
+                Authentication.promptLogin();
             }
         });
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
