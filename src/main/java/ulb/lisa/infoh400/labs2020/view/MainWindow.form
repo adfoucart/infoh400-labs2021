@@ -52,86 +52,96 @@
               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="jScrollPane1" max="32767" attributes="0"/>
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="patientImageLabel" max="32767" attributes="0"/>
-                                  <Component id="patientTextLabel" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="doctorImageLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="doctorTextLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="editPatientButton" pref="51" max="32767" attributes="0"/>
-                                  <Component id="listPatientsButton" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="addPatientButton" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="deletePatientButton" pref="0" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="-2" pref="150" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="jScrollPane1" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="patientImageLabel" max="32767" attributes="0"/>
+                                          <Component id="patientTextLabel" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="doctorImageLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="doctorTextLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="editPatientButton" pref="51" max="32767" attributes="0"/>
+                                          <Component id="listPatientsButton" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="addPatientButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="deletePatientButton" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="listDoctorsButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="editDoctorButton" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="addDoctorButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="deleteDoctorButton" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="listDoctorsButton" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="editDoctorButton" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="addDoctorButton" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="deleteDoctorButton" pref="0" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="listAppointmentsButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="editAppointmentButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="addAppointmentButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="deleteAppointmentButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="listImagesButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="editImageButton" pref="0" max="32767" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="addImageButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                          <Component id="deleteImageButton" min="-2" pref="51" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="AppointmentImageLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="appointmentTextLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Component id="ImageImageLabel" alignment="0" max="32767" attributes="0"/>
+                                          <Component id="ImageTextLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="listAppointmentsButton" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="editAppointmentButton" min="-2" pref="51" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="addAppointmentButton" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="deleteAppointmentButton" min="-2" pref="51" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="listImagesButton" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="editImageButton" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="addImageButton" min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="deleteImageButton" min="-2" pref="51" max="-2" attributes="0"/>
-                              </Group>
+                          <Group type="103" alignment="1" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="startDICOMServerButton" max="32767" attributes="0"/>
+                              <Component id="startHL7ServerButton" max="32767" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="AppointmentImageLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="appointmentTextLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="ImageImageLabel" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="ImageTextLabel" alignment="0" min="-2" pref="100" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="createNewUserButton" alignment="1" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                  <Component id="siteLabel" max="32767" attributes="0"/>
-                  <Component id="startDICOMServerButton" max="32767" attributes="0"/>
-                  <Component id="startHL7ServerButton" max="32767" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="siteLabel" min="-2" pref="221" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -141,9 +151,18 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <Component id="titleLabel" min="-2" pref="43" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="siteLabel" min="-2" pref="20" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
                   <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="40" max="-2" attributes="0"/>
+                      <Component id="createNewUserButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="startHL7ServerButton" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="startDICOMServerButton" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -204,15 +223,7 @@
                           </Group>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" pref="226" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="6" max="-2" attributes="0"/>
-                      <Component id="siteLabel" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="startHL7ServerButton" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="startDICOMServerButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" pref="228" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -495,10 +506,22 @@
     </Component>
     <Component class="javax.swing.JLabel" name="siteLabel">
       <Properties>
+        <Property name="horizontalAlignment" type="int" value="4"/>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="site" type="code"/>
+          <Connection code="site + &quot; (connected as &quot; + Authentication.getUser().getUsername() + &quot;)&quot;" type="code"/>
         </Property>
       </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="createNewUserButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Create new user"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createNewUserButtonActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="if( Authentication.getUser().getIsAdmin() == false ){&#xd;&#xa;    createNewUserButton.setEnabled(false);&#xd;&#xa;    createNewUserButton.setVisible(false);&#xd;&#xa;}"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

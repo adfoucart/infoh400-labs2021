@@ -35,6 +35,10 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "User.findByLastLogin", query = "SELECT u FROM User u WHERE u.lastLogin = :lastLogin")})
 public class User implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "is_admin")
+    private boolean isAdmin;
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -121,6 +125,14 @@ public class User implements Serializable {
     @Override
     public String toString() {
         return "ulb.lisa.infoh400.labs2020.model.User[ iduser=" + iduser + " ]";
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(boolean isAdmin) {
+        this.isAdmin = isAdmin;
     }
     
 }
